@@ -5,11 +5,15 @@ posts = [
 	
 	{
 		'author':'Dev',
-		'title':'Blog 1'
+		'title':'Blog 1',
+		'date_posted': '05 sept 2019',
+		'content': 'This is the first blog content'
 	},
 	{
 		'author':'Shree',
-		'title':'Blog 2'
+		'title':'Blog 2',
+		'date_posted': '07 sept 2019',
+		'content': 'This is the second blog content'
 	}
 
 

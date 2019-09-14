@@ -1,14 +1,7 @@
-from flask import Flask, render_template, url_for, flash, redirect
-from forms import RegistrationForm, LoginForm
-from flask_sqlalchemy import SQLAlchemy
-
-
-app = Flask(__name__)
-app.config['SECRET_KEY'] = 'e43229aeb54fa2017b4d773e44aef0dd'
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///site.db'
-db = SQLAlchemy(app)
-
-from models import User, Post
+from flask import render_template, url_for, flash, redirect
+from flaskblog import app
+from flaskblog.forms import RegistrationForm, LoginForm
+from flaskblog.models import User, Post
 
 
 
@@ -27,15 +20,18 @@ posts = [
 	}
 ]
 
+
 @app.route("/")
 @app.route("/home")
 def home():
 	return render_template('home.html', posts=posts)
 
 
+
 @app.route("/about")
 def about():
 	return render_template('about.html', title='about')
+
 
 
 @app.route("/register", methods=['GET','POST'])
@@ -47,6 +43,7 @@ def register():
 		return redirect(url_for('home'))
 
 	return render_template('register.html', title='Register', form=form)
+
 
 
 @app.route("/login", methods=['GET', 'POST'])
@@ -61,7 +58,3 @@ def login():
 			flash(f'Log in unsuccessful!', 'danger')
 
 	return render_template('login.html', title='Login', form=form)
-
-
-if __name__=='__main__':
-	app.run(debug=True)
